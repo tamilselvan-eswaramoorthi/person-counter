@@ -1,0 +1,144 @@
+    <!DOCTYPE html>
+{% load static %}
+<html class = "no-js" lang = "en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scanner Cam</title>
+    <link rel="stylesheet" href = "{% static 'core/css/foundation.css' %}"> <!-- Elemento Estático -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+   <style>
+    body, html {
+      height: 100%;
+    }
+
+    canvas:hover {
+      -webkit-transform: rotate(90deg);
+      -moz-transform: rotate(90deg);
+      -o-transform: rotate(90deg);
+    }
+
+    #cards {
+      width: 100%;
+      height: 85%;
+      background-color:rgb(244, 244, 244);
+    }
+
+    #heads {
+      width: 100%;
+      height: 9vh;
+      background-color: #18a7d4;
+      color: white;
+    }
+
+    #foot {
+      width: 100%;
+      background-color: #333736;
+      height: 21vh;
+
+    }
+
+    img {
+      width: 1005px;
+      height: 470px;
+      margin-top: 6vh;
+    }
+
+    #text_1 {
+      color: white;
+      font-size: 14px;
+      font-family: monospace;
+    }
+
+    .text_2 {
+      color: #555b58;
+      font-size: 62px;
+      font-family: inherit;
+      margin-top: 25vh;
+    }
+
+    .ligth {
+      color: #a09da7;
+    }
+    .ligth_2 {
+      color: white;
+    }
+    </style>
+  </head>
+
+
+
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">People counter</a>
+      <div id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'cam' %}">webcam</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'selectfile' %}">select from file</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'filter' %}">filter</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    </div>
+      <div id = "cards">
+        <div class = "grid-container">
+          <div class = "grid-x align-center-middle">
+              {% block streaming %}
+              <img src = "{% url 'camstreaming' %}" height="185px" width="125px" alt = "body"/>
+              {% endblock streaming %}
+          </div>
+          </div>
+            </div>
+    <div class = "heren"></div>
+    <!-- Elemento Estático --><script src="{% static 'core/js/vendor/jquery.js' %}"></script>
+    <!-- Elemento Estático --><script src="{% static 'core/js/vendor/what-input.js' %}"></script>
+    <!-- Elemento Estático --><script src="{% static 'core/js/vendor/foundation.js' %}"></script>
+    <!-- Elemento Estático --><script>
+      $(document).foundation();
+    </script>
+    <script>
+
+        setInterval(() => {
+          setInterval(() => {
+            document.querySelector('.text_2').classList.toggle("ligth_2");
+          }, 860);
+          document.querySelector('.text_2').classList.toggle("ligth");
+        }, 860);
+
+    </script>
+
+    <script>
+      const canvas = document.getElementById('draw');
+      const context = canvas.getContext("2d")
+
+      context.translate(canvas.width / 2, canvas.height / 2)
+      context.beginPath();
+      context.moveTo(0, 42)
+      context.lineTo(22, 42)
+      context.lineTo(-21, 42)
+      context.lineTo(-21, -6)
+      context.lineTo(24, -6)
+      context.lineTo(24, -27)
+      context.lineTo(57, 18)
+      context.lineTo(30, 57)
+      context.lineTo(30, 38)
+      context.rotate(Math.PI / 360)
+      context.lineCap = "butt"
+      context.lineWidth = 8
+      context.lineJoin = "miter"
+      context.strokeStyle = "#254e9d"
+      context.fillStyle = "#254e9d"
+      context.stroke();
+      context.fill()
+
+    </script>
+  </body>
+</html>
